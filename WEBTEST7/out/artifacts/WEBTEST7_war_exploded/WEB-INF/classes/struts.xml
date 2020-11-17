@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="default" extends="struts-default">
+        <interceptors>
+            <interceptor name="BookPriceIntercept" class="Intercept.BookInterceptor"></interceptor>
+        </interceptors>
+        <action name="login" class="Action.LoginAction">
+            <result name="input">login.jsp</result>
+            <result name="success">main.jsp</result>
+            <result name="error">login.jsp</result>
+        </action>
+        <action name="logout" class="Action.LoginAction" method="logout">
+            <result name="input">login.jsp</result>
+        </action>
+        <action name="addBook" class="Action.BookAction" method="add">
+            <result name="success">addBook.jsp</result>
+            <result name="error">addBook.jsp</result>
+            <result name="input">addBook.jsp</result>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <interceptor-ref name="BookPriceIntercept"></interceptor-ref>
+        </action>
+        <action name="listBook" class="Action.BookAction" method="list" >
+            <result name="success">listBook.jsp</result>
+        </action>
+        <action name="deleteBook" class="Action.BookAction" method="delete">
+            <result name="success">listBook.jsp</result>
+        </action>
+        <action name="updateBook" class="Action.BookAction" method="update">
+            <result name="success">updateBook.jsp</result>
+            <result name="input">updateBook.jsp</result>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <interceptor-ref name="BookPriceIntercept"></interceptor-ref>
+        </action>
+    </package>
+</struts>
